@@ -1,5 +1,4 @@
-# Ignorer le dossier du virtual environment
+# Environnements et fichiers à ignorer
 venv_projet/
-
-# historique des fichiers
 .history/
+.vscode/
