@@ -1,2 +1,5 @@
 # Ignorer le dossier du virtual environment
 venv_projet/
+
+# historique des fichiers
+.history/
