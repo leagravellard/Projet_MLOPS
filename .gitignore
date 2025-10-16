@@ -5,3 +5,5 @@ env_projet/
 mlartifacts/
 mlruns/
 docker.txt
+ReadMe.md
+aws/
