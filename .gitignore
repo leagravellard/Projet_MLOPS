@@ -1,4 +1,8 @@
 # Environnements et fichiers à ignorer
-venv_projet/
+env_projet/
 .history/
 .vscode/
+mlartifacts/
+mlruns/
+model_ML1.pkl/
+model_ML3.pkl/
