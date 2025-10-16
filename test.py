@@ -4,7 +4,7 @@ import pandas as pd
 # ============================================================
 # 🧠 Chargement du modèle ML2 (Régression Logistique)
 # ============================================================
-model = joblib.load("model_ML2.pkl")
+model = joblib.load("app/model_ML2.pkl")
 
 # ============================================================
 # 🔹 Exemple de données d'entrée (sans customer_id)
