@@ -49,12 +49,12 @@ jobs:
       - name: Code format check (Black)
         run: |
           pip install black
-          black --check app.py
+          black --check app/app.py
 
       - name: Lint (Pylint)
         run: |
           pip install pylint
-          pylint --disable=R,C app.py
+          pylint --disable=R,C app/app.py
 
       # Étape 5 : Lancer les tests unitaires
       - name: Run tests
