@@ -17,9 +17,9 @@ COPY . /app
 # 🧰 4. Installer les dépendances
 # ============================
 RUN pip install --no-cache-dir --upgrade pip && \
-    # Supprime les dépendances Windows avant installation
-    grep -v "pywin32" requirements.txt > requirements_docker.txt && \
-    pip install --no-cache-dir -r requirements_docker.txt
+    # Supprime la dépendance Windows "pywin32" avant installation
+    grep -v "pywin32" /app/requirements.txt > /app/requirements_docker.txt && \
+    pip install --no-cache-dir -r /app/requirements_docker.txt
 
 # ============================
 # 🌍 5. Exposer le port (5000 = port Flask)
