@@ -59,6 +59,7 @@ jobs:
       # Étape 5 : Lancer les tests unitaires
       - name: Run tests
         run: |
+          pip install pytest
           python -m pytest -vv test.py
 
 
