@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/305681504206834559/9d269a02796e4d7ba1501f51bf5f1898/artifacts
+end_time: 1760650083216
+entry_point_name: ''
+experiment_id: '305681504206834559'
+lifecycle_stage: active
+run_id: 9d269a02796e4d7ba1501f51bf5f1898
+run_name: DecisionTree_run
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760650059493
+status: 3
+tags: []
+user_id: abdou
