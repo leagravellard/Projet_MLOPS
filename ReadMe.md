@@ -136,4 +136,5 @@ Elle est disponible publiquement sous le nom :
 N’importe quel utilisateur peut la télécharger et la tester en une seule commande :
 
 `docker pull leaso92/lea_mlops_app:latest`
+
 `docker run -p 5000:5000 leaso92/lea_mlops_app`
