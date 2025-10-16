@@ -48,10 +48,12 @@ jobs:
       # Étape 4 : Vérification du code (Black & Pylint)
       - name: Code format check (Black)
         run: |
-          black --check app/app.py
+          pip install black
+          black --check app.py
 
       - name: Lint (Pylint)
         run: |
+          pip install pylint
           pylint --disable=R,C app.py
 
       # Étape 5 : Lancer les tests unitaires
