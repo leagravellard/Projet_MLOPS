@@ -48,7 +48,7 @@ jobs:
       # Étape 4 : Vérification du code (Black & Pylint)
       - name: Code format check (Black)
         run: |
-          black --check app.py
+          black --check app/app.py
 
       - name: Lint (Pylint)
         run: |
