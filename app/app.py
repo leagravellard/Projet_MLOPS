@@ -37,12 +37,14 @@ def predict():
     if request.method == "POST":
         try:
             features = {
-                "credit_lines_outstanding": int(request.form["credit_lines_outstanding"]),
+                "credit_lines_outstanding": int(
+                    request.form["credit_lines_outstanding"]
+                ),
                 "loan_amt_outstanding": float(request.form["loan_amt_outstanding"]),
                 "total_debt_outstanding": float(request.form["total_debt_outstanding"]),
                 "income": float(request.form["income"]),
                 "years_employed": int(request.form["years_employed"]),
-                "fico_score": int(request.form["fico_score"])
+                "fico_score": int(request.form["fico_score"]),
             }
 
             prediction = predict_default(features)
@@ -57,7 +59,9 @@ def predict():
             return render_template("index.html", prediction_text=result, color=color)
 
         except Exception as e:
-            return render_template("index.html", prediction_text=f"Erreur : {e}", color="warning")
+            return render_template(
+                "index.html", prediction_text=f"Erreur : {e}", color="warning"
+            )
 
 
 # ======================================================
