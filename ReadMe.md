@@ -26,10 +26,10 @@ Nous mettons en place un **notebook Jupyter** dans lequel nous réaliserons notr
 Dans le cadre de ce projet, nous avons mis en œuvre une **approche de Machine Learning supervisé** visant à **prédire le risque de défaut de prêt** pour les clients d’une banque.  
 L’objectif principal est de déterminer, à partir des caractéristiques d’un emprunteur, s’il existe un risque que celui-ci **ne rembourse pas son prêt**.
 
-### 🔍 Type de modèle
+### Type de modèle
 Nous avons développé un **modèle de classification binaire**, dont la variable cible indique si le client est en **défaut de paiement (`1`)** ou **non (`0`)**.
 
-### ⚙️ Modèles testés
+### Modèles testés
 Trois modèles de Machine Learning ont été entraînés et comparés :
 
 1. **Decision Tree Classifier**  
@@ -41,7 +41,7 @@ Trois modèles de Machine Learning ont été entraînés et comparés :
 3. **Random Forest Classifier**  
    Un ensemble d’arbres de décision, plus robuste, combinant plusieurs modèles pour améliorer la performance globale.
 
-### 📊 Suivi et traçabilité avec MLflow
+### Suivi et traçabilité avec MLflow
 Nous avons intégré **MLflow** dans notre workflow afin de :
 - **Suivre les expériences** et les paramètres utilisés pour chaque modèle,  
 - **Comparer les métriques de performance**,  
@@ -49,7 +49,7 @@ Nous avons intégré **MLflow** dans notre workflow afin de :
 
 Chaque modèle a été enregistré dans MLflow comme un **experiment distinct**, et chaque exécution comme un **run**, ce qui nous a permis d’analyser précisément les performances.
 
-### 🧮 Métriques d’évaluation
+### Métriques d’évaluation
 Pour comparer les trois modèles, nous avons utilisé plusieurs métriques :
 - **Accuracy** : proportion de prédictions correctes sur l’ensemble du jeu de test,  
 - **Precision** : proportion de prédictions positives réellement correctes,  
@@ -57,7 +57,7 @@ Pour comparer les trois modèles, nous avons utilisé plusieurs métriques :
 - **F1-score** : moyenne harmonique entre la précision et le rappel,  
 - **ROC AUC** : capacité du modèle à distinguer les deux classes.
 
-### 🏆 Résultats obtenus
+### Résultats obtenus
 Après expérimentation, le modèle **de Régression Logistique (Modèle 2)** s’est révélé être **le plus performant** sur notre jeu de données.  
 Voici ses principales métriques :
 
