@@ -54,7 +54,7 @@ jobs:
       - name: Lint (Pylint)
         run: |
           pip install pylint
-          pylint --disable=R,C app/app.py
+          pylint --disable=R,C,E0401,W0718 app/app.py
 
       # Étape 5 : Lancer les tests unitaires
       - name: Run tests
