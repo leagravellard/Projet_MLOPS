@@ -90,7 +90,7 @@ jobs:
       # Étape 4 : Build de l’image Docker
       - name: Build Docker image
         run: |
-          docker build . -f dockerfile -t $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
+          docker build -f app/Dockerfile -t $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }} .
           docker tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }} $DOCKER_USER/$REPO_NAME:latest
 
       # Étape 5 : Push de l’image sur Docker Hub
