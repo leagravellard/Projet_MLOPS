@@ -16,10 +16,9 @@ COPY . /app
 # ============================
 # 🧰 4. Installer les dépendances
 # ============================
-RUN apt-get update && apt-get install -y grep && \
-    pip install --no-cache-dir --upgrade pip && \
-    # Supprime la dépendance Windows "pywin32" avant installation
-    grep -v "pywin32" /app/requirements.txt > /app/requirements_docker.txt && \
+RUN pip install --no-cache-dir --upgrade pip && \
+    python -c "lines=open('/app/requirements.txt').read().splitlines(); \
+               open('/app/requirements_docker.txt','w').write('\n'.join(l for l in lines if 'pywin32' not in l))" && \
     pip install --no-cache-dir -r /app/requirements_docker.txt
 
 # ============================
