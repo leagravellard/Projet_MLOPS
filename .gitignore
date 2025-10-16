@@ -4,5 +4,3 @@ env_projet/
 .vscode/
 mlartifacts/
 mlruns/
-model_ML1.pkl/
-model_ML3.pkl/
