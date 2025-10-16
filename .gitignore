@@ -4,3 +4,4 @@ env_projet/
 .vscode/
 mlartifacts/
 mlruns/
+docker.txt
