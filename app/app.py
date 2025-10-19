@@ -3,7 +3,7 @@ import joblib
 import pandas as pd
 
 # ======================================================
-# 🔧 Initialisation de l'application Flask
+# Initialisation de l'application Flask
 # ======================================================
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ model = joblib.load("model_ML2.pkl")
 
 
 # ======================================================
-# 🔮 Fonction de prédiction
+# Fonction de prédiction
 # ======================================================
 def predict_default(features):
     """Prend un dictionnaire de caractéristiques et renvoie 0 (pas de défaut) ou 1 (défaut)"""
@@ -22,7 +22,7 @@ def predict_default(features):
 
 
 # ======================================================
-# 🏠 Page d'accueil
+# Page d'accueil
 # ======================================================
 @app.route("/", methods=["GET"])
 def home():
@@ -30,7 +30,7 @@ def home():
 
 
 # ======================================================
-# 📊 Route de prédiction
+# Route de prédiction
 # ======================================================
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -65,7 +65,7 @@ def predict():
 
 
 # ======================================================
-# 🚀 Lancement de l'application
+# Lancement de l'application
 # ======================================================
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
