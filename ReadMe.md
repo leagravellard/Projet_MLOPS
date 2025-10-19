@@ -204,6 +204,7 @@ Elle automatise la création et la mise à jour de l’image Docker.
 ```bash
 docker pull leaso92/lea_mlops_app:latest
 docker run -p 5000:5000 leaso92/lea_mlops_app
+```
 
 ### Avantages
 
