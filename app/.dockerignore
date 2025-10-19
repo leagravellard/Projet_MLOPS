@@ -1,0 +1,25 @@
+# Ignorer les environnements locaux
+env_projet/
+.venv/
+__pycache__/
+*.pyc
+
+# Ignorer les dossiers Git
+.git/
+.gitignore
+
+# Ignorer les fichiers de configuration et temporaires
+*.log
+*.tmp
+*.swp
+
+# Ignorer les données locales ou volumineuses
+mlruns/
+mlartifacts/
+*.csv
+*.xlsx
+
+
+# Ignorer les fichiers systèmes
+.DS_Store
+Thumbs.db

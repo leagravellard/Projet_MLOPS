@@ -1,0 +1,30 @@
+# ============================
+# 🐍 1. Choisir l’image de base
+# ============================
+FROM python:3.11-slim
+
+# ============================
+# 📁 2. Définir le dossier de travail dans le conteneur
+# ============================
+WORKDIR /app
+
+# ============================
+# 📦 3. Copier tous les fichiers de ton app dans le conteneur
+# ============================
+COPY . /app
+
+# ============================
+# 🧰 4. Installer les dépendances
+# ============================
+RUN pip install --no-cache-dir --upgrade pip &&\
+    pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+
+# ============================
+# 🌍 5. Exposer le port (5000 = port Flask)
+# ============================
+EXPOSE 5000
+
+# ============================
+# 🚀 6. Lancer l’application
+# ============================
+CMD ["python", "app.py"]
