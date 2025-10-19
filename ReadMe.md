@@ -196,7 +196,7 @@ Elle automatise la création et la mise à jour de l’image Docker.
 
 ### 🔄 Fonctionnement global
 
-1. Tu **pushes ton code** sur la branche `léa_work`.  
+1. Tu **pushes ton code** sur la branche `main`.  
 2. GitHub Actions **lance la pipeline CI/CD**.  
 3. Si tout est vert ✅ → l’image Docker est **buildée et publiée** automatiquement sur Docker Hub.  
 4. Exécution locale en une commande :
