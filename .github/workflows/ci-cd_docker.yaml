@@ -11,10 +11,10 @@ env:
 on:
   push:
     branches:
-      - léa_work
+      - main
   pull_request:
     branches:
-      - léa_work
+      - main
 
 # =========================================
 # Les jobs : CI puis CD
