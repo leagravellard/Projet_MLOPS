@@ -138,3 +138,144 @@ N’importe quel utilisateur peut la télécharger et la tester en une seule com
 `docker pull leaso92/lea_mlops_app:latest`
 
 `docker run -p 5000:5000 leaso92/lea_mlops_app`
+
+## 4️⃣ CI/CD avec Docker & GitHub Actions
+
+### Objectif
+Après avoir conteneurisé notre application Flask avec **Docker**, nous avons automatisé **le build, les tests et le déploiement** grâce à une **pipeline CI/CD** configurée via **GitHub Actions**.
+
+Cette intégration permet :  
+✅ un **contrôle qualité automatique** du code,  
+✅ une **livraison continue** et sans erreur,  
+✅ une **traçabilité complète** de chaque version déployée sur Docker Hub.
+
+---
+
+### CI — *Continuous Integration*
+La partie **CI** s’exécute automatiquement à chaque `push` ou `pull request` sur la branche `léa_work`.  
+Son rôle est de s’assurer que le code est propre, stable et prêt à être déployé.
+
+**Étapes principales :**
+1. 🔹 Clonage du dépôt GitHub  
+2. 🔹 Installation des dépendances (`requirements.txt`)  
+3. 🔹 Vérification du format du code avec **Black**  
+4. 🔹 Analyse de la qualité du code avec **Pylint**  
+5. 🔹 Lancement des **tests unitaires** avec `pytest`
+
+> 💡 Si l’une de ces étapes échoue, le pipeline s’arrête automatiquement et le déploiement n’a pas lieu.
+
+---
+
+### CD — *Continuous Deployment*
+Lorsque la phase CI est validée ✅, la phase **CD** se déclenche.  
+Elle automatise la création et la mise à jour de l’image Docker.
+
+**Étapes clés :**
+1. Connexion sécurisée à **Docker Hub** via les *GitHub Secrets* :
+   - `DOCKER_USER`
+   - `DOCKER_PASSWORD`
+2. Construction de l’image Docker à partir du fichier `app/Dockerfile`  
+3. Génération d’un **tag unique basé sur la date** (ex : `2025-10-19--14-30-00`)  
+4. Push automatique de deux versions sur Docker Hub :
+   - `leaso92/lea_mlops_app:2025-10-19--14-30-00`
+   - `leaso92/lea_mlops_app:latest`
+
+---
+
+### Détails techniques
+
+| Élément | Description |
+|---|---|
+| 🧾 **Fichier de configuration** | `.github/workflows/ci-cd_docker.yaml` |
+| ⚙️ **Nom de la pipeline** | `CI-CD Pipeline - Lea MLOps App (branche léa_work)` |
+| 🐳 **Image Docker** | `leaso92/lea_mlops_app` |
+| 🔗 **Lien Docker Hub** | [👉 leaso92/lea_mlops_app](https://hub.docker.com/r/leaso92/lea_mlops_app) |
+| ✅ **Suivi GitHub Actions** | Résultats visibles dans l’onglet **Actions** du dépôt GitHub |
+
+---
+
+### 🔄 Fonctionnement global
+
+1. Tu **pushes ton code** sur la branche `léa_work`.  
+2. GitHub Actions **lance la pipeline CI/CD**.  
+3. Si tout est vert ✅ → l’image Docker est **buildée et publiée** automatiquement sur Docker Hub.  
+4. Exécution locale en une commande :
+
+```bash
+docker pull leaso92/lea_mlops_app:latest
+docker run -p 5000:5000 leaso92/lea_mlops_app
+
+### Avantages
+
+- **Contrôle automatique de la qualité du code**  
+  Chaque modification est testée et vérifiée avant d’être fusionnée, garantissant la stabilité du projet.
+
+- **Déploiement fluide et reproductible**  
+  Plus besoin de déployer manuellement — tout est automatisé via GitHub Actions et Docker.
+
+- **Versioning automatique grâce aux tags horodatés**  
+  Chaque build Docker est identifié par une date précise, permettant de retracer facilement les versions.
+
+- **Application toujours à jour sur Docker Hub**  
+  La dernière version validée est automatiquement poussée sur le dépôt public :
+  [`leaso92/lea_mlops_app`](https://hub.docker.com/r/leaso92/lea_mlops_app)
+
+
+# 5️⃣ Déploiement sur AWS (ECR + ECS)
+
+## Qu’est-ce qu’AWS et à quoi sert le déploiement
+
+**AWS (Amazon Web Services)** est une plateforme de cloud computing qui permet d’héberger des applications, de stocker des données et de déployer des services à grande échelle sans avoir à gérer soi-même des serveurs physiques.
+
+Faire un **déploiement sur AWS**, c’est rendre notre application **accessible en ligne**, via une **adresse publique**.  
+Concrètement, le code et les modèles sont emballés dans une image Docker, envoyés sur AWS, puis exécutés automatiquement dans un environnement sécurisé et scalable.  
+L’objectif est que **n’importe qui puisse consulter l’application depuis un navigateur**, sans avoir besoin de la lancer en local.
+
+---
+
+## Principe général
+
+- **ECR (Elastic Container Registry)** : stockage de notre image Docker (le “code empaqueté”).  
+- **ECS (Elastic Container Service)** : service qui exécute cette image dans un **cluster** de conteneurs.  
+- **Cluster** : regroupe les ressources d’exécution (machines virtuelles gérées par AWS).  
+- **Task Definition** : configuration décrivant quelle image lancer et avec quels paramètres.  
+- **Service** : exécute la task et maintient le conteneur actif (auto-redémarrage, mise à l’échelle, etc.).
+
+---
+
+## Étapes réalisées
+
+1. **Connexion à AWS**  
+   Configuration du compte avec `aws configure`, puis authentification au registre ECR.
+
+2. **Création du dépôt ECR**  
+   - Création d’un **référentiel** pour stocker l’image Docker.  
+   - Envoi de l’image (`docker push`) vers le dépôt AWS :
+     ```
+     898423168656.dkr.ecr.eu-west-3.amazonaws.com/mlops_projet:latest
+     ```
+
+3. **Déploiement sur ECS**  
+   - Création d’un **cluster** nommé `mlops-cluster`.  
+   - Création d’une **Task Definition** appelée `mlops-ML`, qui référence l’image stockée dans ECR.  
+   - Création d’un **Service** appelé `mlops-service` pour exécuter la task.
+
+4. **Accès à l’application**  
+   - Depuis la console AWS → ECS → Cluster → Services → Tasks.  
+   - Cliquer sur la tâche en cours d’exécution.  
+   - Récupérer l’**adresse IP publique** dans la section *Réseau / Règles de sécurité*.  
+   - Ouvrir cette adresse dans un navigateur pour accéder à l’application.
+
+---
+
+## Informations de déploiement
+
+- **Région AWS** : `eu-west-3` (Paris)  
+- **ECR Repository** : `mlops_projet`  
+- **Cluster ECS** : `mlops-cluster`  
+- **Task Definition** : `mlops-ML`  
+- **Service ECS** : `mlops-service`  
+
+➡️ **Résultat final :** l’application est déployée avec succès sur AWS et accessible publiquement via son adresse IP.
+
+
